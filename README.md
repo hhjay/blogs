@@ -1,1 +1,43 @@
-# hhjay-blog
+# 待查
+
+------------
+
+- [x] [栅格化布局是什么；流式布局、栅格布局、固定布局的区别](./layout-grid-flow-fixed.md)
+- [x] [链表和数组区别](link-list-array.md)
+- [x] [rem的适配方案、vm、与em区别，px与pt区别](./em-rem.md)
+- [x] [原型链及继承](js-object-extends.md)
+- [x] [es6/7的新属性](./es-6-7.md)
+- [x] [localStorage、session和cookie的区别，session存在内存？](./session-cookie.md)
+- [x] [http请求流程，怎么走304、怎么走200](http-request-status)
+- [x] [bfc](./bfc.md)
+- [x] [undefined、null、NaN的区别](undefined-null.md)
+- [x] [call、apply、bind区别](./call-apply.md)
+- [x] [CSRF、XSS怎么防御](attack-defense.md)
+- [x] [vue、react的区别，vue1、vue2的区别](vue1-vue2.md)
+- [x] [vue源码，双向绑定原理、虚拟dom](./vue-code.md)
+- [ ] [怎么适配移动端，@media、ua判断走不同css](mobile-layout.md)
+- [ ] [http协议](https://www.v2ex.com/t/440366#reply32)
+- [ ] 发布流程 申请nginx 打包
+- [ ] 排序算法(https://juejin.im/post/5ab9ae9cf265da23830ae617)
+- [ ] [简单请求、非简单请求](https://www.cnblogs.com/renpingsheng/p/7688134.html)
+- [ ] 页面性能优化
+- [ ] 页面渲染流程
+- [ ] 在改变 url 时页面不刷新的办法
+- [ ] 闭包、构造函数、闭包怎么隐藏数据
+- [ ] 尝试Ts + angular实现站点
+- [ ] position的三个值？
+- [ ] flex的布局，具体
+- [ ] ie的margin双边距的问题及解决方案
+- [ ] 标准模型、怪异模型区别，deoctype后面那些是什么
+- [ ] for in可以break，forEach不支持
+- [ ] 小程序开发
+    - [ ] 腾讯云
+    - [ ] 留言板（恋爱札记）、谁是卧底
+    - [ ] 小游戏
+- [ ] 要不要写一个前端通用组件，就算是直接看elementUis
+    - [ ] 栅格化
+    - [ ] loading
+    - [ ] ...
+- [ ] 备案
+    - [ ] 微信小程序
+    - [ ] 个人博客迁移
