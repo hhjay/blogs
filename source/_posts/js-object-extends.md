@@ -8,7 +8,7 @@ tags: js
 - 一切事物皆对象
 - 对象具有封装和继承特性
 
-## 原型链继承
+## 原型链
 - 对象（object）依赖类（class）来产生，而基于原型链的面向对象方向中，对象依赖构造器（constructor）利用原型链（prototype）构造出来的
 - 被继承的属性和方法都放在prototype中
 - 子继承者自己的属性和方法也放在自己的prototype
@@ -33,6 +33,22 @@ tags: js
     }
     var p1 = new Person("hhj", "man");
     p1.say();
+```
+- 原型链继承
+``` JavaScript
+    function Car() {
+        this.run = "This Car is Runing";
+    }
+    Car.prototype.sayRun = function () {
+        console.log(this.run);
+    }
+
+    function Dongfeng(name) {
+        this.name = "Dongfeng 2";
+        this.color = "green";
+    }
+    Dongfeng.prototype = new Car();
+    Dongfeng.prototype.run = ""
 ```
 
 ## class继承
