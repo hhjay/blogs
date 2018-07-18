@@ -11,7 +11,7 @@ tags: js
 - 存在问题
     - 变量命名之间会有冲突
     - 前端模块很多的时候，管理起来困难
-    - 依赖关系难以处理
+    - 难以保证加载顺序、依赖关系难以处理
     - 功能复用比较难
 
 ## require是什么
@@ -63,8 +63,22 @@ tags: js
 ```
 
 ## 源码基本结构
+- 查找顺序（bar、bar.js、bar.json、bar.node、bar/package.json、bar/index.js、bar/index.json、bar/index.node）
+- 找到对应的依赖文件（有些用模块id，但这样的话每次更新模块都要更新对应的id）
+- 每个模块实例都有一个require方法，其实内部会调用module._load方法
+    - 是否有缓存，有缓存取出缓存
+    - 是否为内置模块
+        - 如果是内置模块，直接返回模块（可避免重复加载）
+    - 生成模块实例，存入缓存
+    - 加载模块
+    - 去除模块的export
 
-## 运行原理
+## AMD规范和commonJs规范比较
+- commonJs是服务端的规范，Nodejs采用了这个规范
+    - 一个单独的文件就是一个模块
+    - 加载文件使用require方法，该方法读取一个文件并执行，最后返回文件内部的export
+    - 加载完成，才能执行后面的操作
+- AMD则是非同步加载模块，允许指定回调函数
 
 ## 参考
 - [ibm.developer](https://www.ibm.com/developerworks/cn/web/1209_shiwei_requirejs/index.html)
