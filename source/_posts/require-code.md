@@ -80,5 +80,39 @@ tags: js
     - 加载完成，才能执行后面的操作
 - AMD则是非同步加载模块，允许指定回调函数
 
+## 经典解读
+``` JavaScript
+    // 判断浏览器
+    var isBrowser = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document);
+    // 判断是否加载完成
+    var readyRegExp = isBrowser && navigator.platform === 'PLAYSTATION 3' ?
+                      /^complete$/ : /^(complete|loaded)$/;
+    
+    // 判断script是否加载完成
+    onScriptLoad: function (evt) {
+        // firefox 2.0需要currentTarget，旧浏览器srcElement
+        if (evt.type === 'load' || (readyRegExp.test((evt.currentTarget || evt.srcElement).readyState))) {
+            // 重置脚本，保证脚本不会保存太久
+            interactiveScript = null;
+
+            // 导出模块的名称和上下文
+            var data = getScriptData(evt);
+            context.completeLoad(data.id);
+        }
+    }
+
+    // 创建对应的js script
+    req.createNode = function (config, moduleName, url) {
+        var node = config.xhtml ?
+                document.createElementNS('http://www.w3.org/1999/xhtml', 'html:script') :
+                document.createElement('script');
+        node.type = config.scriptType || 'text/javascript';
+        node.charset = 'utf-8';
+        node.async = true;
+        return node;
+    };
+```
+
 ## 参考
 - [ibm.developer](https://www.ibm.com/developerworks/cn/web/1209_shiwei_requirejs/index.html)
+- [github.HRFE](https://github.com/HRFE/blog/issues/10)
