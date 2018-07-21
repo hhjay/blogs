@@ -61,6 +61,22 @@ tags: js
     ``` JavaScript
         this.obj = Object.assign({}, this.obj, { a: 1, b: 2 });
     ```
+- 数组怎么监听
+    - 监听push、pop、shift、unshift、splice、sort、reverse这几个数组方法
+        ```JavaScript ['push',
+        'pop',
+        'shift',
+        'splice',
+        'unshift',
+        'sort',
+        'reverse'].forEach(function(met) {
+            // 监听code
+        })
+        ```
+    - 不能监听的操作
+        - 用索引直接设置某个项```Javascript vm.arr[key] = val; ```
+        - 修改数组长度```Javascript vm.arr.length = 8; ```
+        - 都可以用set显式触发更新状态
 - [为什么data是返回函数而非对象](https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0)
     - 函数作用域
     - 组件是通过Vue.component全局注册的，可以用在其注册之后的任何新创建的Vue根实例

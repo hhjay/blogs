@@ -28,7 +28,8 @@ tags: js
 - slot
 - keep-alive变成一个包裹组件，而不只是一个属性
 - { { { html } } } 使用 v-html替换
-- 在vue2中增加了虚拟dom
+- 在vue2中增加了虚拟dom（virtual DOM）
+    - 当watcher被通知变动时，watcher会通知组件的render函数进行re-render操作，创建一个新的virtual DOM，跟旧的virtual DOM进行diff比较，得到一个最优的dom更新路径
 
 ## vuex
 - $dispatch 和 $broadcast 替换
