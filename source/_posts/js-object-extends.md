@@ -13,43 +13,44 @@ tags: js
 - 被继承的属性和方法都放在prototype中
 - 子继承者自己的属性和方法也放在自己的prototype
 - 子继承者的prototype对象的__proto__属性指向被继承的prototype
-```JavaScript
-    class: { prototype: {} }
-    |                   ^
-    |                   |
-    V                   |
-    new class: {        |
-        prototype: {    |
-            __proto__: { }
+- 继承到最后是Null
+    ```JavaScript
+        class: { prototype: {} }
+        |                   ^
+        |                   |
+        V                   |
+        new class: {        |
+            prototype: {    |
+                __proto__: { }
+            }
         }
-    }
-    // 实例
-    function Person(name, sex) {
-        this.name = name;
-        this.sex = sex;
-    }
-    Person.prototype.say = function() {
-        return `my name is ${this.name}, and I am a ${this.sex}`;
-    }
-    var p1 = new Person("hhj", "man");
-    p1.say();
-```
+        // 实例
+        function Person(name, sex) {
+            this.name = name;
+            this.sex = sex;
+        }
+        Person.prototype.say = function() {
+            return `my name is ${this.name}, and I am a ${this.sex}`;
+        }
+        var p1 = new Person("hhj", "man");
+        p1.say();
+    ```
 - 原型链继承
-``` JavaScript
-    function Car() {
-        this.run = "This Car is Runing";
-    }
-    Car.prototype.sayRun = function () {
-        console.log(this.run);
-    }
+    ``` JavaScript
+        function Car() {
+            this.run = "This Car is Runing";
+        }
+        Car.prototype.sayRun = function () {
+            console.log(this.run);
+        }
 
-    function Dongfeng(name) {
-        this.name = "Dongfeng 2";
-        this.color = "green";
-    }
-    Dongfeng.prototype = new Car();
-    Dongfeng.prototype.run = ""
-```
+        function Dongfeng(name) {
+            this.name = "Dongfeng 2";
+            this.color = "green";
+        }
+        Dongfeng.prototype = new Car();
+        Dongfeng.prototype.run = ""
+    ```
 
 ## class继承
 
