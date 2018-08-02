@@ -57,7 +57,19 @@ tags: js
 
 ## 选择器selector
 
-## deferred
+## deferred ( $.Deferred )
+- 是一个延迟对象，延迟到某个点才执行，改变状态的方法有resolve和reject，分别对应done和fail
+- 他实现的promise方法
+    - tuples
+        - 定义[行为、添加监听、回调函数]
+    - state
+        - 执行状态，默认pendding
+    - promise
+        - state
+        - always
+        - catch
+        - pipe
+        - then
 
 ## event
 
