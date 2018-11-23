@@ -60,3 +60,4 @@ tags: js
 - [segmentfault](https://segmentfault.com/a/1190000008533435)
 - [ruanyifeng](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001458267339633fd3a83c597d04b5fb59f7d1f6792efb3000)
 - [github.norfish](https://github.com/norfish/blog/wiki/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JavaScrip%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF)
+- [junjin.用java的方式将继承](https://juejin.im/post/5bebc6a3e51d4575125a39ca)
