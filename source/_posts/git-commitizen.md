@@ -13,6 +13,12 @@ tags: git
 - 对提交信息进行格式化，避免"test"、"aaa"、"..."等无效信息
 - 方便后期查看，例如看fix就知道是单纯的bugfix、feat是功能开发、test是测试相关
 - 可自定义输入
+``` bash
+    # npm
+    npm install -g commitizen
+    # yarn
+    yarn global add commitizen
+```
 
 ## [cz-conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)
 - 对输入的内容进行校验
