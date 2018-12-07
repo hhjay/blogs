@@ -25,6 +25,23 @@ tags: git
 
 ## [cz-customizable](https://github.com/leonardoanalista/cz-customizable)
 - 自定义cz选项及校验函数
+- 添加cz-customizable
+```bash 
+    # 添加cz-customizable
+    yarn add cz-customizable
+ ```
+- 添加（.cz-config.js）文件
+- 修改package文件
+``` json
+    {
+        "config": {
+            "commitizen": {
+                "path": "node_modules/cz-customizable"
+            }
+        }
+    }
+```
+- 最后git cz就ok了
 
 ## 工程化
 
