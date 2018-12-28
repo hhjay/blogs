@@ -4,6 +4,9 @@ date: 2018-12-24 10:35:30
 tags: js
 ---
 
+## 重新运行vue-cli3的项目会报错
+- 装个全局的node-sass就好了
+
 ## vue-cli下，scss变量问题
 - 向预处理Loader传递全局变量
 - [方案](https://cli.vuejs.org/zh/guide/css.html#css-modules)
