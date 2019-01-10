@@ -1,7 +1,7 @@
 ---
 title: 华盈面试0720
 date: 2018-07-20 16:31:30
-tags: face
+tags: interview
 ---
 
 ## css选择符，哪些属性可以继承

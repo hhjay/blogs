@@ -1,7 +1,7 @@
 ---
 title: iyunxiao面试历程
 date: 2018-07-11 17:18:17
-tags: job
+tags: interview
 ---
 
 ## 笔试
