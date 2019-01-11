@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>javascript class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        class Animal {
+            constructor(color, name) {
+                this.color = color;
+                this.name = name;
+
+                console.log(`这是一只${ color }的${ name }`);
+            }
+            self() {// 返回自身，看看是否在此使用static
+                return this;
+            }
+            static Run(a, b) {
+                return `${ a.color }的${ a.name }在追 => ${ b.color }的${ b.name }`;
+            }
+        }
+        // const dog = new Animal('黄色', '狗');
+        // const pig = new Animal('黑色', '猪');
+        // const cat = new Animal('白猫', '猫');
+        // console.log( Animal.Run(dog, pig) );
+        // console.log(cat.Run(dog, pig)); // 会报错，因为静态方法不会被实例化，且不能被实例调用
+        // let self = dog.self();
+        // console.log(self.Run); // undefind
+        // class Dog1 extends Animal {};
+        // const _dog1 = new Dog1();
+        // console.log(_dog1.Run); // undefind
+        class Dog1 extends Animal {
+            constructor() {}
+            static Run1(a, b) {
+                console.log('超类', a, b);
+                return super.Run(a, b);
+            }
+        };
+        const _dog1 = new Dog1('黄色', '狗');
+        const _dog2 = new Dog1('白色', '狗');
+        console.log( Dog1.Run1(_dog1, _dog2) );
+    </script>
+</body>
+</html>
