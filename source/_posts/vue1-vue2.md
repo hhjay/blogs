@@ -4,6 +4,23 @@ date: 2018-06-05 13:50:50
 tags: js
 ---
 
+## 为什么要升级到Vue2
+- vue2新特性
+    - 使用了基于snabbdom的virtual-dom对底层的渲染进行了重写
+    - 对上层的编译做了优化处理，例如对重绘时减少了一些不必要的对比，即值重绘修改的部分子组件
+    - 可手动写渲染函数，并提供jsx的babel
+        - template + jsx都可以使用
+    - 支持服务端渲染（ssr），流式+组件级的渲染
+        - Vue 2.0 提供了内建的流式服务端渲染 - 在渲染组件时返回一个可读的 stream，然后直接 pipe 到 HTTP response
+- vue-router新特性
+    - 支持多命名的router-view
+    - 可通过router-link进行导航功能
+    - 自定义的滚动条行为
+- vuex
+    - 简化组件内的用法
+    - 可聚合的异步action
+- 饿了么也出了最新的elementUi组件库
+
 ## vue区别
 - 父子组件双向响应变成单项数据传递
     - 可用$on / $emit
