@@ -45,5 +45,18 @@ tags: git
 
 ## 工程化
 
+## 更多命令工具
+``` bash
+    # 迁移到新的路径1
+    git remote set-url origin
+    git push origin master
+
+    # 迁移到新的路径2
+    git remote remove origin
+    git remote add origin [新路径]
+    git push origin master
+    #
+```
+
 ## 参考链接
 - [ruanyifeng](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
