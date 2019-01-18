@@ -45,13 +45,14 @@ tags: interview
     ``` javaScript
         
     ```
-
 - extends
     - 请注意，类不能继承常规（非可构造）对象。如果要继承常规对象，可以改用Object.setPrototypeOf
 
 ## 箭头函数和普通函数区别
+- [链接](./es-6-7.md?es-6-7)
 
 ## 为什么升级Vue1 -> Vue2
+- 是否满足现在和以后的需求以及升级的代价
 - Vue2支持es6的语法
 - Vue2的生态更好，可使用的
 - Vue2减去了一些不常用的Api
