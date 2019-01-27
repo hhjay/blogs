@@ -77,6 +77,25 @@ tags: js
 - hiddenVisibleSelectors
 
 ## ajax
+- 原生ajax是什么
+    - Async Javascript And Xml (异步js和xml)
+    - 是用于创建快速动态网页的技术，可以再不重新加载整个网页的情况下，对网页的某部分进行更新
+    - XmlHttpRequest & ActiveXObject( Ie5/6 )
+        - xml.open("GET | POST", url, true | false) 
+        ``` JavaScript
+            // true异步请求，执行到这一步之后会继续往下执行，并不需要等待返回结果 
+            // false同步请求，执行到这一步之后会等待返回结果再往下执行
+        ```
+        - setRequestHeader(header, value) ``` setRequestHeader("Content-type", "application/x-www-form-urlencoded") ```
+        - xml.send() ，将请求发送至服务器
+    - POST 与 GET 区别： POST无法使用缓存
+    - onreadystatechange | readyState | status
+        - readyState
+            - 0 : 请求未初始化
+            - 1 : 请求连接已建立
+            - 2 : 请求已接收
+            - 3 : 请求处理中
+            - 4 : 请求已完成，且响应已就绪
 - xhr
 - script
 - jsonp

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>事件冒泡&捕获</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .parent {
+            background-color: #f1f1f1;
+            width: 200px;
+            height: 120px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .children {
+            width: 140px;
+            height: 80px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="children">
+            click me
+        </div>
+    </div>
+    <script>
+        var parent = document.querySelector(".parent");
+        var children= document.querySelector(".children");
+        
+        function handleChi() {
+            console.log("children");
+        }
+        function handlePar() {
+            console.log("parent");
+        }
+        parent.addEventListener('click', handlePar, true);
+        children.addEventListener('click', handleChi, true);
+        
+        console.log(parent, children)
+    </script>
+</body>
+</html>
