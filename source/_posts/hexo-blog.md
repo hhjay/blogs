@@ -24,6 +24,7 @@ tags: js
 ## 打包上线
 - git
     - 怎么进行发布，设置各种属性
+        - delete 文件夹.deploy_git
         - hexo clean
         - hexo d
         - 设置
