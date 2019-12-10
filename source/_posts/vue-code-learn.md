@@ -1,0 +1,270 @@
+---
+title: vue源码解读
+date: 2018-11-27 10:37:18
+tags: js
+---
+
+## 基本架构
+
+## 具体
+- Vue
+    - initMixin
+        - 记录uid++
+        - 标记开始和结束tag
+        - 合并options（一些使用方自定义的optios和constructor合并并挂载在$options）
+        - 初始化生命周期 
+            - `initLifecycle` 
+                - 合并parent的options并将自身(vm)push到$children
+            - `callHook` 回调钩子
+                - push当前状态(动态触发Watch)
+                - 寻找到当前钩子的options
+                - 循环判断调用错误函数，是否会有异常
+                - emit当前hook
+                - pop当前状态(动态触发Watch)
+            - `hook状态`
+                - 状态标志
+                    - `_directInactive`
+                    - `_isMounted`
+                    - `_isDestroyed`
+                    - `_isBeingDestroyed` 用于destroy实例
+                    - `_inactive`
+                    - `_watcher`
+                - `mountComponent`
+                    - 获取传进来的el，判断是否已经渲染过`vm.$options.render`，若没有将vnode重新赋值`vm.$options.render = createEmptyVNode`
+                    - 回调钩子beforeMount`callHook(vm, 'beforeMount')`
+                    - 将当前组件封装为updateComponent组件，加入到`Watch`，并回调beforeUpdate钩子`callHook(vm, 'beforeUpdate')`
+                    - 回调mounted钩子`callHook(vm, 'mounted')`
+                - `activateChildComponent`
+                    - 递归修改当前组件的`_directInactive`状态
+                    - 并回调钩子activated`callHook(vm, 'activated')`
+            - initEvents
+                - 创建_events并默认赋值null`vm._events = Object.create(null)`
+                - 继承监听函数`$options._parentListeners`，并监听当前vm
+            - initRender
+                - 从options中获取Vnode(Vnode中包含renderContext)
+                - 判断当前slot并挂载到`$slots`
+                    - 找到子组件下的attr上是否有slot，并把其`context`及其`child`push到vm的$slots下
+                - 将`createElement`挂载到vm.$createElement
+                - 将`data`/`$attrs`/`$listeners`加入observer，set有变化则显性通知`dep.notify()`
+            - 回调钩子beforeCreate`callHook(vm, 'beforeCreate')`
+            - initInjections(初始化data/props)
+            - initState(初始化状态)
+                - initProps
+                - initMethods
+                - initData
+                - initComputed
+                - initWatch
+            - 回调钩子created`callHook(vm, 'created')`
+            - 标记结束tag`mark(endTag)`
+            - mount相应element`vm.$mount`
+    - state 状态`stateMixin`
+        - 监听$data/$props值的变化(props仅可读，不可写)
+        - 记录下$set/$delete/$watch，$set和$delete有`observe`提供，调用它们会被显性修改并通知到变化`ob.dep.notify()`
+    - events 事件`eventsMixin`
+        - $on
+            - 如果当前是初始化(即监听所有事件列表)，循环当前事件列表调用监听自身fn`vm.$on(event[i], fn)`
+            - 如果是监听具体事件，将当前监听`push`到`vm._events`
+        - $off
+            - 如果是off全部事件列表，则循环当前事件列表，并off具体事件
+            - 如果是具体事件，将调用函数置为null，并将当前事件从所有事件列表`vm._events`中删除
+        - $once
+            - 仅调用一次$on，然后直接$off
+        - $emit
+    - lifecycle 生命周期`lifecycleMixin`
+        - `_update`
+            - 激活实例(修改当前实例activeInstance)
+            - 判断是否已经存在该实例，不存在则初始化实例，存在则更新实例，并将当前vm更新到$el
+            - 判断当前实例与上一级挂载实例是否一致，不一致则重新挂载
+        - `$forceUpdate`
+        - `$destroy`
+            - 使用`_isBeingDestroyed`节流，仅destroy一次
+            - 判断父节点是否destroy，直接remove当前实例(将当前实例从上一级列表中移除)
+            - 从Watch列表中移除
+            - 从data中移除相关数据
+            - 回调当前状态为destroyed
+            - 将当前node重置为null、$el重置为null
+    - render 渲染`renderMixin`
+        - 初始化渲染帮助函数`installRenderHelpers`
+            - markOnce: `v-once`给node添加唯一key
+            - toNumber: parseFloat值
+            - toString: Object.prototype.toString
+            - renderList: render v-for list
+            - renderSlot: render slot`this.$createElement('template', { slot: target }, nodes)`
+            - looseEqual
+            - looseIndexOf: indexOf
+            - renderStatic
+                - cached / _staticTrees 是否有缓存
+                - 循环标记`{isStatic: true, key: key, isOnce: isOnce}`
+            - resolveFilter: vue-filter
+            - checkKeyCodes: 优先匹配Vue.config下的keycode、其次匹配hyphenate
+            - bindObjectProps: 合并v-bind的数据到props
+            - createTextVNode: 创建text的Vnode
+            - createEmptyVNode: 创建空的Vnode`node = new VNode();node.text = text;node.isComment = true`
+            - resolveScopedSlots: 返回v-slot的作用域`res[slot.key] = slot.fn`
+            - bindObjectListeners: $on的返回值
+            - bindDynamicKeys: 动态key，类似`<div id="foo" :[key]="value">`
+            - prependModifier
+    - warn(vue logs) util工具
+    - VNode
+        - tag
+        - data
+        - children
+        - text
+        - elm
+        - ns
+        - context
+        - fnContext
+        - fnOptions
+        - fnScopeId
+        - key
+        - componentOptions
+        - componentInstance
+        - parent
+        - raw
+        - isStatic
+        - isRootInsert
+        - isComment
+        - isCloned
+        - isOnce
+        - asyncFactory
+        - asyncMeta defined
+        - isAsyncPlaceholder
+- initGlobalAPI
+    - watch config`Object.defineProperty(Vue, 'config', configDef)`
+    - 一些工具类加入到Vue中`Vue.util = { warn, extend, mergeOptions, defineReactive }`
+    - 一些方法`Vue.set/delete/nextTick/observable`
+    - init options`Vue.options`
+    - initUse: 初始化插件，vue.use(installedPlugins)
+    - initMixin: 合并options
+    - initExtend: Vue.extend
+        - 创建一个Sub的VueComponent
+        - 如果缓存有，则返回相应的cachedCtors
+        - `Sub.prototype = Object.create(Super.prototype)`
+        - `Sub.prototype.constructor = Sub`
+        - `initProps/initComputed`
+    - initAssetRegisters
+        - component 组件注册
+        - directive 指令注册
+- 服务端渲染相关
+    - `Object.defineProperty(Vue.prototype, '$isServer'`
+    - `Object.defineProperty(Vue.prototype, '$ssrContext'`
+- observer
+    - observer
+        - observeArray
+            - 循环数组并`observe`
+        - walk
+            - object类型的进行循环`defineReactive`
+            - `getOwnPropertyDescriptor`获取对象的自身属性
+                - value
+                - writable value是否可以被修改写入
+                - get
+                - set
+                - configurable key值是否可以修改or删除
+                - enumerable 是否可以被枚举
+            - 如果当前对象的`configurable`为`false`的话(即不可变化)则无需`observe`
+            - 获取childOb并重新observer(形成递归)
+            - `Object.defineProperty`当前obj
+                - get
+                    - 值变化会判断是否为数组，为数组则`dependArray`(递归循环每一个并添加到depend)
+                    - 若不为数组，则对子对象进行`childOb.dep.depend()`
+                - set
+                    - 判断值是否和旧值不一致，不一致则修改值(如果是object则赋值childOb并添加`observer`)并`notify`
+        - set
+            - 数组`target.splice(key, 1, val)`
+            - 对象`target[key] = val`
+        - del
+            - 数组`target.splice(key, 1)`
+            - 对象`delete target[key]`
+    - Watcher
+        - get 重新收集依赖项
+        - addDep 添加具体依赖项
+        - cleanupDeps 清空所有依赖项
+        - update 更新依赖项 同步调用调度函数
+        - run 调度函数
+        - evaluate 
+        - depend 获取当前所有依赖项(递归获取)
+        - teardown 删除订阅服务
+    - traverse
+        - 递归获取相应依赖关系
+    - Dep
+        - addSub `this.subs.push(sub)`
+        - removeSub `remove(this.subs, sub)`
+        - depend `Dep.target.addDep(this)`
+        - notify 循环调养子节点的`subs[i].update()`
+        - pushTarget
+        - popTarget
+    - array
+        - 定义数组的`'push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'`，循环监听并显性触发`ob.dep.notify()`
+- vdom
+    - VNode
+        - VNode
+            - 定义当前vNode的`tag/data/children/text/...`
+            - constructor构造函数调用自身并给定默认值
+        - createEmptyVNode
+            - `new VNode()`
+            - 并默认赋值空字符串
+        - createTextVNode
+        - cloneVNode
+            - `new VNode(xxxxx)`new一个原始值的VNode
+    - create-component
+        - componentVNodeHooks
+            - init
+                - 判断是否`keepAlive`，是的话`prepatch`更新组件
+                - 否的话`createComponentInstanceForVnode`创建新组件，并回调`mount`
+            - prepatch 预处理，更新组件`updateChildComponent`
+            - insert 
+                - 插入组件，判断是否已经创建`_isMounted`，并回调`mounted`
+                - 是否keepAlive组件，是的话
+                    - 继续判断_isMounted，是的话重新active组件`queueActivatedComponent`
+                    - 否则active子组件`activateChildComponent`
+            - destroy
+                - 调用当前的`$destroy`，并`deactivateChildComponent`
+        - createComponent
+            - 继承基础options`Ctor = context.$options._base.extend(Ctor)`
+            - `data = data || {}`
+            - 调用构造函数`resolveConstructorOptions`
+            - 解析props`extractPropsFromVNodeData(data, Ctor, tag)`
+            - 如果是函数式组件则构建`createFunctionalComponent`
+            - 记录on`data.on & data.nativeOn`
+            - 记录slot`data.slot`
+            - 构建组件钩子`installComponentHooks()`
+            - 构建VNode`vnode = new VNode(...)`
+        - createComponentInstanceForVnode
+            - 构建render
+            - 若无inlineTemplate、记录render/staticRenderFns
+            - `new vnode.componentOptions.Ctor(options)`
+    - create-functional-component
+        - FunctionalRenderContext 渲染element
+            - 记录下当前`data/props/children/parent/listeners/injections/slots`，且监听`scopedSlots`并记录
+            - createElement，并记录到_c中
+        - createFunctionalComponent
+            - 合并当前的`attrs/props`
+            - FunctionalRenderContext
+            - clone且标记当前element`cloneAndMarkFunctionalResult`
+    - patch
+        - sameVnode
+            - key
+            - tag
+            - isComment
+            - isDef(data)
+        - sameInputType
+            - data
+            - attrs
+            - type
+        - createKeyToOldIdx
+        - createPatchFunction
+- global-api
+    - use(install plugin)
+    - mixin(mergeOptions)
+    - extend
+        - `Super = this`
+        - `Sub.prototype = Object.create(Super.prototype);Sub.prototype.constructor = Sub`
+        - `Sub.extend = Super.extend`
+        - `Sub.mixin = Super.mixin`
+        - `Sub.use = Super.use`
+    - assetRegisters
+        - component
+        - directive
+        - filter
+- server
+- 
