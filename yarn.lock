@@ -348,7 +348,7 @@ chalk@^2.3.1:
 
 cheerio@^0.19.0:
   version "0.19.0"
-  resolved "http://registry.npmjs.org/cheerio/-/cheerio-0.19.0.tgz#772e7015f2ee29965096d71ea4175b75ab354925"
+  resolved "https://registry.npmjs.org/cheerio/-/cheerio-0.19.0.tgz#772e7015f2ee29965096d71ea4175b75ab354925"
   dependencies:
     css-select "~1.0.0"
     dom-serializer "~0.1.0"
@@ -435,7 +435,7 @@ compressible@~2.0.13:
 
 compression@^1.6.0:
   version "1.7.2"
-  resolved "http://registry.npmjs.org/compression/-/compression-1.7.2.tgz#aaffbcd6aaf854b44ebb280353d5ad1651f59a69"
+  resolved "https://registry.npmjs.org/compression/-/compression-1.7.2.tgz#aaffbcd6aaf854b44ebb280353d5ad1651f59a69"
   dependencies:
     accepts "~1.3.4"
     bytes "3.0.0"
@@ -499,7 +499,7 @@ css-parse@1.7.x:
 
 css-select@~1.0.0:
   version "1.0.0"
-  resolved "http://registry.npmjs.org/css-select/-/css-select-1.0.0.tgz#b1121ca51848dd264e2244d058cee254deeb44b0"
+  resolved "https://registry.npmjs.org/css-select/-/css-select-1.0.0.tgz#b1121ca51848dd264e2244d058cee254deeb44b0"
   dependencies:
     boolbase "~1.0.0"
     css-what "1.0"
@@ -517,7 +517,7 @@ css-select@~1.2.0:
 
 css-what@1.0:
   version "1.0.0"
-  resolved "http://registry.npmjs.org/css-what/-/css-what-1.0.0.tgz#d7cc2df45180666f99d2b14462639469e00f736c"
+  resolved "https://registry.npmjs.org/css-what/-/css-what-1.0.0.tgz#d7cc2df45180666f99d2b14462639469e00f736c"
 
 css-what@2.1:
   version "2.1.0"
@@ -1411,7 +1411,7 @@ levn@~0.3.0:
 
 lodash@^3.2.0:
   version "3.10.1"
-  resolved "http://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
 lodash@^4.1.0, lodash@^4.17.5, lodash@^4.2.1:
   version "4.17.5"
@@ -1449,8 +1449,8 @@ markdown@~0.5.0:
     nopt "~2.1.1"
 
 marked@^0.3.9:
-  version "0.3.17"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.17.tgz#607f06668b3c6b1246b28f13da76116ac1aa2d2b"
+  version "0.3.19"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
 
 micromatch@^2.1.5:
   version "2.3.11"
@@ -2038,7 +2038,7 @@ sntp@2.x.x:
 
 source-map@0.1.34:
   version "0.1.34"
-  resolved "http://registry.npmjs.org/source-map/-/source-map-0.1.34.tgz#a7cfe89aec7b1682c3b198d0acfb47d7d090566b"
+  resolved "https://registry.npmjs.org/source-map/-/source-map-0.1.34.tgz#a7cfe89aec7b1682c3b198d0acfb47d7d090566b"
   dependencies:
     amdefine ">=0.0.4"
 
@@ -2257,7 +2257,7 @@ uglify-js@2.6.0:
 
 uglify-js@~2.4:
   version "2.4.24"
-  resolved "http://registry.npmjs.org/uglify-js/-/uglify-js-2.4.24.tgz#fad5755c1e1577658bb06ff9ab6e548c95bebd6e"
+  resolved "https://registry.npmjs.org/uglify-js/-/uglify-js-2.4.24.tgz#fad5755c1e1577658bb06ff9ab6e548c95bebd6e"
   dependencies:
     async "~0.2.6"
     source-map "0.1.34"
@@ -2403,7 +2403,7 @@ yargs@~3.10.0:
 
 yargs@~3.5.4:
   version "3.5.4"
-  resolved "http://registry.npmjs.org/yargs/-/yargs-3.5.4.tgz#d8aff8f665e94c34bd259bdebd1bfaf0ddd35361"
+  resolved "https://registry.npmjs.org/yargs/-/yargs-3.5.4.tgz#d8aff8f665e94c34bd259bdebd1bfaf0ddd35361"
   dependencies:
     camelcase "^1.0.2"
     decamelize "^1.0.0"
